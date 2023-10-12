@@ -71,8 +71,8 @@ const sendErrorProd = (err, req, res) => {
       msg: err.message,
     });
   }
-  // B) Programming or other unknown error: don't leak error details
-  // 1) Log error
+  // // B) Programming or other unknown error: don't leak error details
+  // // 1) Log error
   console.error('ERROR 💥', err);
   // 2) Send generic message
   return res.status(err.statusCode).render('error', {
@@ -88,7 +88,7 @@ module.exports = (err, req, res, next) => {
   err.status = err.status || 'error';
 
   if (process.env.NODE_ENV === 'development') {
-    sendErrorDev(err, req, res);
+    // sendErrorDev(err, req, res);
   } else if (process.env.NODE_ENV === 'production') {
     let error = { ...err };
     error.message = err.message;
@@ -102,6 +102,6 @@ module.exports = (err, req, res, next) => {
 
     // console.log(err.message);
     // console.log(error.message);
-    sendErrorProd(error, req, res);
+    sendErrorProd(err, req, res);
   }
 };
