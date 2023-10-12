@@ -88,6 +88,7 @@ module.exports = (err, req, res, next) => {
   err.status = err.status || 'error';
 
   if (process.env.NODE_ENV === 'development') {
+    //REMEMBER THIS /////
     // sendErrorDev(err, req, res);
   } else if (process.env.NODE_ENV === 'production') {
     let error = { ...err };
@@ -102,6 +103,8 @@ module.exports = (err, req, res, next) => {
 
     // console.log(err.message);
     // console.log(error.message);
-    sendErrorProd(err, req, res);
+
+    //REMEMBER THIS /////
+    // sendErrorProd(err, req, res);
   }
 };
